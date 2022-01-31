@@ -39,7 +39,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":"4effb29d65c8c7727d1f7cd90f0be014","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -111,6 +111,18 @@
             </li>
           
         
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
@@ -158,24 +170,24 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/11/15/SUIAutoTestDo/" target="_self">
-          <img src="/img/w03.png" srcset="/img/loading.gif" alt="S-UIAutoTest（实现篇）">
+        <a href="/2021/05/01/FlaskAndDB/" target="_self">
+          <img src="/img/FlaskAndDb.png" srcset="/img/loading.gif" alt="Flask配置&amp;操作数据库">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/11/15/SUIAutoTestDo/">S-UIAutoTest（实现篇）</a>
+        <a href="/2021/05/01/FlaskAndDB/">Flask配置&amp;操作数据库</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/11/15/SUIAutoTestDo/">
+        <a href="/2021/05/01/FlaskAndDB/">
           
           
             
           
-          上一篇文章主要写了我怎么设计的这个UI自动化测试框架，下面👇我来说说S-UIAutoTest具体的实现和使用。
+          这篇文章总结一下Flask通过SQLAlchemy进行数据库（MySQL）操作。
         </a>
       </p>
 
@@ -183,149 +195,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-11-15 22:56" pubdate>
-              2020-11-15
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">自动化测试</a>
-            
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/11/08/SUIAutoTestDesign/" target="_self">
-          <img src="/img/w03.png" srcset="/img/loading.gif" alt="S-UIAutoTest（框架篇）">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/11/08/SUIAutoTestDesign/">S-UIAutoTest（框架篇）</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/11/08/SUIAutoTestDesign/">
-          
-          
-            
-          
-          上一篇文章主要写了，我为什么要做这个UI自动化测试框架，下面👇我来说说这个框架的构成。
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-11-08 22:56" pubdate>
-              2020-11-08
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">自动化测试</a>
-            
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/11/01/SUIAutoTest/" target="_self">
-          <img src="/img/w03.png" srcset="/img/loading.gif" alt="S-UIAutoTest（需求篇）">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/11/01/SUIAutoTest/">S-UIAutoTest（需求篇）</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/11/01/SUIAutoTest/">
-          
-          
-            
-          
-          根据各种需求，我编写了WebUI自动化测试框架S-UIAutoTest，实现了WebUI自动化测试。这个系列文章，我会把我实现的整个过程都回顾记录下来，把知识和技能沉淀一下。
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-11-01 22:56" pubdate>
-              2020-11-01
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">自动化测试</a>
-            
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/10/29/ForTester/" target="_self">
-          <img src="/img/w01.png" srcset="/img/loading.gif" alt="对于软件测试的一些感悟">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/10/29/ForTester/">对于软件测试的一些感悟</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/10/29/ForTester/">
-          
-          
-            
-          
-          我从事软件测试已经有4年了，干了这么久，多多少少有一些感悟。写这篇文章，是想说说我对软件测试的一下想法和感悟，其实主要想吐槽和说说现实😄
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-10-29 23:55" pubdate>
-              2020-10-29
+            <time datetime="2021-05-01 23:55" pubdate>
+              2021-05-01
             </time>
           </div>
         
@@ -346,24 +217,24 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2019/08/25/PythonLogNote/" target="_self">
-          <img src="/img/w02.png" srcset="/img/loading.gif" alt="Python实现日志记录功能">
+        <a href="/2021/02/19/PreciseTesting/" target="_self">
+          <img src="/img/PreciseTesting.png" srcset="/img/loading.gif" alt="浅谈精准测试">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2019/08/25/PythonLogNote/">Python实现日志记录功能</a>
+        <a href="/2021/02/19/PreciseTesting/">浅谈精准测试</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2019/08/25/PythonLogNote/">
+        <a href="/2021/02/19/PreciseTesting/">
           
           
             
           
-          最近在写接口自动化框架，需要日志记录功能，就研究了下，写的不算特别好，遵从先实现再优的原则嘛😜，这次呢，我就说下我实现的整个过程。
+          最近对精准测试比较感兴趣，就去查了些资料，了解了一些有关精准测试的东西，这篇文章就来记录一下我个人的一些想法。
         </a>
       </p>
 
@@ -371,8 +242,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2019-08-25 22:49" pubdate>
-              2019-08-25
+            <time datetime="2021-02-19 21:49" pubdate>
+              2021-02-19
             </time>
           </div>
         
@@ -380,7 +251,383 @@
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Python/">Python</a>
+              <a href="/categories/%E6%B5%8B%E8%AF%95%E6%8A%80%E6%9C%AF/">测试技术</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/11/20/SoftwareTesting/" target="_self">
+          <img src="/img/SoftwareTesting.png" srcset="/img/loading.gif" alt="什么是软件测试？">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/11/20/SoftwareTesting/">什么是软件测试？</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/11/20/SoftwareTesting/">
+          
+          
+            
+          
+          这篇文章来说说我所理解的软件测试吧！🙈
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-11-20 23:55" pubdate>
+              2020-11-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%B5%8B%E8%AF%95%E7%BB%8F%E9%AA%8C/">测试经验</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/10/15/NginxNote2/" target="_self">
+          <img src="/img/nginx.png" srcset="/img/loading.gif" alt="Nginx学习笔记（二）">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/10/15/NginxNote2/">Nginx学习笔记（二）</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/10/15/NginxNote2/">
+          
+          
+            
+          
+          在上一篇文章说了我对Nginx理解，这篇文章就来说说Nginx的在Linux下的安装和基础的配置。
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-15 22:22" pubdate>
+              2020-10-15
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/">测试工具</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/10/05/NginxNote1/" target="_self">
+          <img src="/img/nginx.png" srcset="/img/loading.gif" alt="Nginx学习笔记（一）">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/10/05/NginxNote1/">Nginx学习笔记（一）</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/10/05/NginxNote1/">
+          
+          
+            
+          
+          最近我在部署我自己项目的时候，使用到了Nginx，之前一直只是了解过一点点，而没有实际使用过，这次呢，我就边学习边使用，完成自己项目的部署，并且对Nginx有了一定的了解。
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-05 22:22" pubdate>
+              2020-10-05
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/">测试工具</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/10/05/Jenkins3/" target="_self">
+          <img src="/img/jenkins.png" srcset="/img/loading.gif" alt="Jenkins实现持续集成自动化测试（三）">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/10/05/Jenkins3/">Jenkins实现持续集成自动化测试（三）</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/10/05/Jenkins3/">
+          
+          
+            
+          
+          上一篇文章写了Jenkins任务的配置以及流水线的基础配置，这篇文章我们就来说说Jenkins节点配置、权限以及数据备份👏
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-05 22:01" pubdate>
+              2020-10-05
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/">测试工具</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/10/02/Jenkins2/" target="_self">
+          <img src="/img/jenkins.png" srcset="/img/loading.gif" alt="Jenkins实现持续集成自动化测试（二）">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/10/02/Jenkins2/">Jenkins实现持续集成自动化测试（二）</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/10/02/Jenkins2/">
+          
+          
+            
+          
+          上一篇文章写了Jenkins是什么以及它的安装与初始化，这篇文章我们就来说说任务的初始化以及流水线的配置吧👏
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-02 22:01" pubdate>
+              2020-10-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/">测试工具</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/10/01/Jenkins1/" target="_self">
+          <img src="/img/jenkins.png" srcset="/img/loading.gif" alt="Jenkins实现持续集成自动化测试（一）">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/10/01/Jenkins1/">Jenkins实现持续集成自动化测试（一）</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/10/01/Jenkins1/">
+          
+          
+            
+          
+          今天我们就来学习一下Jenkins是什么，我用它做了些什么以及安装与初始化👏
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-01 22:01" pubdate>
+              2020-10-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/">测试工具</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/09/20/HIDocker3/" target="_self">
+          <img src="/img/HiDocker.png" srcset="/img/loading.gif" alt="你好👋 Docker（三）">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/09/20/HIDocker3/">你好👋 Docker（三）</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/09/20/HIDocker3/">
+          
+          
+            
+          
+          上一篇文章介绍了如何制作Docker镜像，总的来说还是蛮简单的。这篇文章就来说说Docker容器的备份与恢复。👀
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-20 22:22" pubdate>
+              2020-09-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/">测试工具</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/09/18/HIDocker2/" target="_self">
+          <img src="/img/HiDocker.png" srcset="/img/loading.gif" alt="你好👋 Docker（二）">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/09/18/HIDocker2/">你好👋 Docker（二）</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/09/18/HIDocker2/">
+          
+          
+            
+          
+          上一篇文章介绍了Docker的基本概念和常用命令，这篇文章就来说说怎么制作Docker镜像。👀
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-18 22:22" pubdate>
+              2020-09-18
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/">测试工具</a>
             
           </div>
         
@@ -390,6 +637,18 @@
   </div>
 
 
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 
@@ -438,8 +697,59 @@
      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
   
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
 
   
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        蜀ICP备2020035042号-1
+      </a>
+    </span>
+    
+      
+        <span>
+          <a
+            href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51012202000836"
+            rel="nofollow noopener"
+            class="beian-police"
+            target="_blank"
+          >
+            
+              <span style="visibility: hidden; width: 0">|</span>
+              <img src="/img/beian_police.png" srcset="/img/loading.gif" alt="police-icon"/>
+            
+            <span>川公网安备 51012202000836号</span>
+          </a>
+        </span>
+      
+    
+  </div>
+
 
   
 </footer>
@@ -492,6 +802,8 @@
 
 
 
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
 
 
 
@@ -529,6 +841,30 @@
 
 
 
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?4effb29d65c8c7727d1f7cd90f0be014";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
 

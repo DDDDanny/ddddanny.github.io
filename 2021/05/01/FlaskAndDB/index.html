@@ -1,0 +1,827 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/tag-faces.png">
+  <link rel="icon" type="image/png" href="/img/tag-faces.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="MintBlueBlog">
+  <meta name="author" content="DDDDanny">
+  <meta name="keywords" content="">
+  <title>Flask配置&amp;操作数据库 - MintBlue</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.22.0/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.22.0/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":"4effb29d65c8c7727d1f7cd90f0be014","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>MintBlue</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/bg002.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Flask配置&操作数据库">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-01 23:55" pubdate>
+        2021年5月1日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Flask配置&amp;操作数据库</h1>
+            
+            <div class="markdown-body">
+              <p>这篇文章总结一下Flask通过SQLAlchemy进行数据库（MySQL）操作。</p>
+<a id="more"></a>
+<h3 id="安装Flask-SQLAlchemy-amp-PyMySQL"><a href="#安装Flask-SQLAlchemy-amp-PyMySQL" class="headerlink" title="安装Flask-SQLAlchemy &amp; PyMySQL"></a>安装Flask-SQLAlchemy &amp; PyMySQL</h3><p>首先先介绍下Flask-SQLAlchemy &amp; PyMySQL这两个库</p>
+<ul>
+<li>Flask-SQLAlchemy：它是一套Flask的ORM框架，ORM是<em>Object Relationship Mapping（模型关系映射）</em></li>
+<li>PyMySQL：它是在 Python3.x 版本中用于连接 MySQL 服务器的一个库</li>
+</ul>
+<blockquote>
+<p>使用ORM，可以让我们操作数据库跟操作对象是一样的，一个表就是抽象成的一个类，一条数据就是抽象成的该类的一个对象。</p>
+</blockquote>
+<p>安装它们就和安装Python其他第三方库一样：</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装Flask-SQLAlchemy</span>
+pip <span class="token function">install</span> flask-sqlalchemy
+<span class="token comment"># 安装PyMySQL</span>
+pip <span class="token function">install</span> pymysql<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>安装完成后，我们就可以对MySQL进行配置啦👏</p>
+<h3 id="Flask配置MySQL数据库"><a href="#Flask配置MySQL数据库" class="headerlink" title="Flask配置MySQL数据库"></a>Flask配置MySQL数据库</h3><p>无论你是用基础的Flask应用还是使用Flask的工厂应用，配置信息都是一样的。</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 实例化Flask</span>
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+<span class="token comment"># 配置数据库信息</span>
+<span class="token comment"># 例如：app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:123456.@127.0.0.1:3306/demo_db'</span>
+app<span class="token punctuation">.</span>config<span class="token punctuation">[</span><span class="token string">'SQLALCHEMY_DATABASE_URI'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'mysql+pymysql://数据库用户名:密码.@数据库地址:数据库端口/数据库名称'</span>
+<span class="token comment"># 实例化SQLAlchemy</span>
+db <span class="token operator">=</span> SQLAlchemy<span class="token punctuation">(</span>app<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>实例化SQLAlchemy后，就可以开始进行数据库的各种操作啦👏</p>
+<h3 id="常用的SQLAlchemy字段类型"><a href="#常用的SQLAlchemy字段类型" class="headerlink" title="常用的SQLAlchemy字段类型"></a>常用的SQLAlchemy字段类型</h3><table>
+<thead>
+<tr>
+<th>类型名</th>
+<th>python中类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Integer</td>
+<td>int</td>
+<td>常规整数，一般是32位</td>
+</tr>
+<tr>
+<td>SmallInteger</td>
+<td>int</td>
+<td>短整型，一般是16位</td>
+</tr>
+<tr>
+<td>BigInteger</td>
+<td>int或long</td>
+<td>不限制精度的整型</td>
+</tr>
+<tr>
+<td>Float</td>
+<td>float</td>
+<td>浮点数</td>
+</tr>
+<tr>
+<td>String</td>
+<td>str</td>
+<td>可变长字符串</td>
+</tr>
+<tr>
+<td>Text</td>
+<td>str</td>
+<td>可变长字符串，适合大量文本</td>
+</tr>
+<tr>
+<td>Unicode</td>
+<td>unicode</td>
+<td>可变长Unicode字符串</td>
+</tr>
+<tr>
+<td>UnicodeText</td>
+<td>unicode</td>
+<td>可变长Unicode字符串，适合大量文本</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>bool</td>
+<td>布尔值</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>datetime.date</td>
+<td>日期类型</td>
+</tr>
+<tr>
+<td>Time</td>
+<td>datetime.time</td>
+<td>时间类型</td>
+</tr>
+<tr>
+<td>DateTime</td>
+<td>datetime.datetime</td>
+<td>日期和时间</td>
+</tr>
+<tr>
+<td>Interva</td>
+<td>datetime.timedelta</td>
+<td>时间间隔</td>
+</tr>
+<tr>
+<td>LargeBinary</td>
+<td>str</td>
+<td>二进制文件</td>
+</tr>
+</tbody></table>
+<h3 id="常用的SQLAlchemy可选参数"><a href="#常用的SQLAlchemy可选参数" class="headerlink" title="常用的SQLAlchemy可选参数"></a>常用的SQLAlchemy可选参数</h3><table>
+<thead>
+<tr>
+<th>可选参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>primary_key</td>
+<td>如果为True，代表表的主键</td>
+</tr>
+<tr>
+<td>unique</td>
+<td>如果为True，代表这列不允许出现重复的值</td>
+</tr>
+<tr>
+<td>index</td>
+<td>如果为True，为这列创建索引，提高查询效率</td>
+</tr>
+<tr>
+<td>nullable</td>
+<td>如果为True，允许有空值，如果为False，不允许有空值</td>
+</tr>
+<tr>
+<td>default</td>
+<td>为这列定义默认值</td>
+</tr>
+</tbody></table>
+<h3 id="常用的SQLAlchemy查询过滤器"><a href="#常用的SQLAlchemy查询过滤器" class="headerlink" title="常用的SQLAlchemy查询过滤器"></a>常用的SQLAlchemy查询过滤器</h3><table>
+<thead>
+<tr>
+<th>过滤器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>filter()</td>
+<td>返回符合该条件的查询集，BaseQuery对象</td>
+</tr>
+<tr>
+<td>filter_by()</td>
+<td>返回符合该等值条件的查询集</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>使用指定的值限定原查询返回的结果</td>
+</tr>
+<tr>
+<td>offset()</td>
+<td>偏移原查询返回的结果，返回一个新查询集</td>
+</tr>
+<tr>
+<td>order_by()</td>
+<td>根据字段进行排序，默认是正序，返回新查询集,desc可以反序</td>
+</tr>
+<tr>
+<td>group_by()</td>
+<td>根据字段进行分组，返回新查询集合</td>
+</tr>
+</tbody></table>
+<h3 id="常用的SQLAlchemy查询执行器"><a href="#常用的SQLAlchemy查询执行器" class="headerlink" title="常用的SQLAlchemy查询执行器"></a>常用的SQLAlchemy查询执行器</h3><table>
+<thead>
+<tr>
+<th>执行器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>all()</td>
+<td>以列表形式返回查询的所有结果</td>
+</tr>
+<tr>
+<td>first()</td>
+<td>返回查询的第一个结果，如果未查到，返回None</td>
+</tr>
+<tr>
+<td>first_or_404()</td>
+<td>返回查询的第一个结果，如果未查到，返回404</td>
+</tr>
+<tr>
+<td>get()</td>
+<td>返回指定主键对应的行，如不存在，返回None</td>
+</tr>
+<tr>
+<td>get_or_404()</td>
+<td>返回指定主键对应的行，如不存在，返回404</td>
+</tr>
+<tr>
+<td>count()</td>
+<td>返回查询结果的数量</td>
+</tr>
+<tr>
+<td>paginate()</td>
+<td>返回一个Paginate对象，它包含指定范围内的结果<br />参数一：第几页，参数二：每页个数，参数3：如果没有该页数返回False</td>
+</tr>
+</tbody></table>
+<h3 id="Flask-SQLAlchemy对数据的增、删、改、查"><a href="#Flask-SQLAlchemy对数据的增、删、改、查" class="headerlink" title="Flask-SQLAlchemy对数据的增、删、改、查"></a>Flask-SQLAlchemy对数据的增、删、改、查</h3><h4 id="增加"><a href="#增加" class="headerlink" title="增加"></a>增加</h4><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 实例化数据对象</span>
+data_demo <span class="token operator">=</span> DemoModel<span class="token punctuation">(</span>field1<span class="token operator">=</span><span class="token string">'1'</span><span class="token punctuation">)</span>
+db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>add<span class="token punctuation">(</span>data_demo<span class="token punctuation">)</span>
+db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 找到需要删除的数据</span>
+data_demo <span class="token operator">=</span> DemoModel<span class="token punctuation">.</span>query<span class="token punctuation">.</span>filter_by<span class="token punctuation">(</span>field<span class="token operator">=</span><span class="token string">'1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>delete<span class="token punctuation">(</span>data_demo<span class="token punctuation">)</span>
+db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h4 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h4><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 找到需要修改的数据</span>
+data_demo <span class="token operator">=</span> DemoModel<span class="token punctuation">.</span>query<span class="token punctuation">.</span>filter_by<span class="token punctuation">(</span>field<span class="token operator">=</span><span class="token string">'1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+data_demo<span class="token punctuation">.</span>field <span class="token operator">=</span> <span class="token string">'2'</span>
+db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h4 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h4><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 查询数据-全部查询，返回的list</span>
+data_list <span class="token operator">=</span> DemoModel<span class="token punctuation">.</span>query<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># 增加过滤器进行查询</span>
+data_list <span class="token operator">=</span> DemoModel<span class="token punctuation">.</span>query<span class="token punctuation">.</span>filter_by<span class="token punctuation">(</span>field<span class="token operator">=</span><span class="token string">'1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># 查询数据-返回查询结果中的第一条</span>
+data_demo <span class="token operator">=</span> DemoModel<span class="token punctuation">.</span>query<span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># 查询数据-返回指定主键对应的行</span>
+data_demo <span class="token operator">=</span> DemoModel<span class="token punctuation">.</span>query<span class="token punctuation">.</span>get<span class="token punctuation">(</span>primaryKey<span class="token punctuation">)</span>
+<span class="token comment"># 通过执行SQL语句进行查询</span>
+sql <span class="token operator">=</span> <span class="token string">'select field from demo_model'</span>
+data_demo <span class="token operator">=</span> db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">)</span>
+<span class="token comment"># 查询需要的字段</span>
+data_demo <span class="token operator">=</span> db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>query<span class="token punctuation">(</span>DemoModel<span class="token punctuation">.</span>name<span class="token punctuation">,</span> DemoModel<span class="token punctuation">.</span>age<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h3 id="连表"><a href="#连表" class="headerlink" title="连表"></a>连表</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 连接表</span>
+data_demo <span class="token operator">=</span> db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>query<span class="token punctuation">(</span>
+  DemoModel<span class="token punctuation">.</span>name<span class="token punctuation">,</span> Demo2Mode<span class="token punctuation">.</span>book
+<span class="token punctuation">)</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>
+  Demo2Model<span class="token punctuation">,</span> Demo2Model<span class="token punctuation">.</span>user_id <span class="token operator">==</span> DemoModel<span class="token punctuation">.</span>user_id
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h3 id="Flask操作数据库示例"><a href="#Flask操作数据库示例" class="headerlink" title="Flask操作数据库示例"></a>Flask操作数据库示例</h3><p><strong>DemoModel.py</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># DemoModel</span>
+<span class="token keyword">class</span> <span class="token class-name">DemoModel</span><span class="token punctuation">(</span>db<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 定义表名</span>
+    __tablename__ <span class="token operator">=</span> <span class="token string">'demo'</span>
+    <span class="token comment"># 主键必须要加 unique=True，否则会报错</span>
+    demo_id <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">,</span> primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> unique<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    demo_name <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span> unique<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+    desc <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>String<span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+    create_time <span class="token operator">=</span> db<span class="token punctuation">.</span>Column<span class="token punctuation">(</span>db<span class="token punctuation">.</span>Date<span class="token punctuation">,</span> default<span class="token operator">=</span>datetime<span class="token punctuation">.</span>now<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p><strong>DemoVeiw.py</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> DemoModel <span class="token keyword">import</span> DemoModel
+
+<span class="token keyword">class</span> <span class="token class-name">DemoView</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+    
+    <span class="token comment"># 生成UUID</span>
+    <span class="token decorator annotation punctuation">@staticmethod</span>
+    <span class="token keyword">def</span> <span class="token function">__create_uuid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token builtin">str</span><span class="token punctuation">(</span>uuid<span class="token punctuation">.</span>uuid4<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 序列化demo信息</span>
+    <span class="token keyword">def</span> <span class="token function">__demo_info_serializer</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> demo_item<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>
+            <span class="token string">'demoID'</span><span class="token punctuation">:</span> demo_item<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token string">'demoName'</span><span class="token punctuation">:</span> demo_item<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token string">'desc'</span><span class="token punctuation">:</span> demo_item<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token string">'createTime'</span><span class="token punctuation">:</span> demo_item<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span>
+        <span class="token punctuation">&#125;</span>
+
+    <span class="token comment"># 获取demo列表</span>
+    <span class="token keyword">def</span> <span class="token function">get_demo_list</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      	<span class="token comment"># 执行SQL语句进行查询</span>
+        sql <span class="token operator">=</span> <span class="token triple-quoted-string string">''' select demo_id, demo_name, desc, create_time, from demo order by create_time desc; '''</span>
+        data_obj <span class="token operator">=</span> db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">)</span>
+        data <span class="token operator">=</span> <span class="token punctuation">[</span>self<span class="token punctuation">.</span>__demo_info_serializer<span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token keyword">for</span> item <span class="token keyword">in</span> data_obj<span class="token punctuation">]</span>
+        <span class="token keyword">return</span> data
+
+    <span class="token comment"># 新增demo信息</span>
+    <span class="token keyword">def</span> <span class="token function">add_demo_info</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> demo_name<span class="token punctuation">,</span> desc<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        demo_id <span class="token operator">=</span> self<span class="token punctuation">.</span>__create_uuid<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        demo_info <span class="token operator">=</span> DemoModel<span class="token punctuation">(</span>
+         	demo_id<span class="token operator">=</span>demo_id<span class="token punctuation">,</span>
+          demo_name<span class="token operator">=</span>demo_name<span class="token punctuation">,</span>
+          desc<span class="token operator">=</span>desc
+        <span class="token punctuation">)</span>
+        db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>add<span class="token punctuation">(</span>demo_info<span class="token punctuation">)</span>
+        db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 删除demo信息</span>
+    <span class="token keyword">def</span> <span class="token function">del_demo_info</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> demo_id<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        demo_info <span class="token operator">=</span> DemoModel<span class="token punctuation">.</span>query<span class="token punctuation">.</span>filter_by<span class="token punctuation">(</span>demo_id<span class="token operator">=</span>demo_id<span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>delete<span class="token punctuation">(</span>demo_info<span class="token punctuation">)</span>
+        db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+       
+    <span class="token comment"># 编辑demo信息</span>
+    <span class="token keyword">def</span> <span class="token function">edit_demo_info</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> demo_id<span class="token punctuation">,</span> demo_name<span class="token punctuation">,</span> desc<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        demo_info <span class="token operator">=</span> DemoModel<span class="token punctuation">.</span>query<span class="token punctuation">.</span>filter_by<span class="token punctuation">(</span>demo_id<span class="token operator">=</span>demo_id<span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        demo_info<span class="token punctuation">.</span>demo_name <span class="token operator">=</span> demo_name
+        demo_info<span class="token punctuation">.</span>desc <span class="token operator">=</span> desc
+        db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        db<span class="token punctuation">.</span>session<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>这里写了一部分基础的数据库操作，如果想深入了解，可以去<a target="_blank" rel="noopener" href="https://www.sqlalchemy.org/">SQLAlchemy</a> &amp; <a target="_blank" rel="noopener" href="https://flask-sqlalchemy.palletsprojects.com/en/2.x/">Flask-SQLAlchemy</a>去了解</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%B5%8B%E8%AF%95%E7%BB%8F%E9%AA%8C/">测试经验</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/02/19/PreciseTesting/">
+                        <span class="hidden-mobile">浅谈精准测试</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        蜀ICP备2020035042号-1
+      </a>
+    </span>
+    
+      
+        <span>
+          <a
+            href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51012202000836"
+            rel="nofollow noopener"
+            class="beian-police"
+            target="_blank"
+          >
+            
+              <span style="visibility: hidden; width: 0">|</span>
+              <img src="/img/beian_police.png" srcset="/img/loading.gif" alt="police-icon"/>
+            
+            <span>川公网安备 51012202000836号</span>
+          </a>
+        </span>
+      
+    
+  </div>
+
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?4effb29d65c8c7727d1f7cd90f0be014";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

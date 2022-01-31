@@ -1,0 +1,612 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/tag-faces.png">
+  <link rel="icon" type="image/png" href="/img/tag-faces.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="MintBlueBlog">
+  <meta name="author" content="DDDDanny">
+  <meta name="keywords" content="">
+  <title>什么是软件测试？ - MintBlue</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.22.0/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.22.0/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":"4effb29d65c8c7727d1f7cd90f0be014","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>MintBlue</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/bg002.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="什么是软件测试？">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-11-20 23:55" pubdate>
+        2020年11月20日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      14
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">什么是软件测试？</h1>
+            
+            <div class="markdown-body">
+              <p>这篇文章来说说我所理解的软件测试吧！🙈</p>
+<a id="more"></a>
+
+<h3 id="什么是测试"><a href="#什么是测试" class="headerlink" title="什么是测试"></a>什么是测试</h3><p>在说软件测试前，我想先说下什么是测试。下面👇是百度百科给的解释：</p>
+<blockquote>
+<p>测试是具有试验性质的测量，即测量和试验的综合。</p>
+</blockquote>
+<p>我认为，测试是一个根据<code>标准</code>检验对象的<code>过程</code>，这里的对象就比较广泛了，硬件测试、软件测试、心理测试、体能测试、智力测试等等很多种测试类型，而这次只是说说软件测试。</p>
+<h3 id="软件测试的定义"><a href="#软件测试的定义" class="headerlink" title="软件测试的定义"></a>软件测试的定义</h3><p>下面👇是比较官方的说法：</p>
+<blockquote>
+<p>软件测试（英语：Software Testing），描述一种用来促进鉴定软件的正确性、完整性、安全性和质量的过程。换句话说，软件测试是一种实际输出与预期输出之间的审核或者比较过程。软件测试的经典定义是：在规定的条件下对程序进行操作，以发现程序错误，衡量软件质量，并对其是否能满足设计要求进行评估的过程。</p>
+</blockquote>
+<p>实际上面👆说了3种定义，但是我认为可以再简单一点：</p>
+<blockquote>
+<p>软件测试就是验证软件产品是否与设计需求一致的过程</p>
+</blockquote>
+<p>它满足了测试的定义：有标准，是个过程</p>
+<p>测试圈有这么一种说法：<code>需求上写的越少，测试的工作就越多</code>😅</p>
+<p>这句话也可以用在我对软件测试的定义上，怎么说呢，定义说的很简单，但其实是很复杂的一个过程。想要做好软件测试，是需要很多经验、理论和技能支撑的。</p>
+<h3 id="软件测试的分类"><a href="#软件测试的分类" class="headerlink" title="软件测试的分类"></a>软件测试的分类</h3><p>软件测试根据不同条件，有不同的分类：</p>
+<ul>
+<li><p>按照软件载体划分：</p>
+<blockquote>
+<p>PC客户端测试、PCWeb端测试、移动端App测试、小程序测试</p>
+</blockquote>
+</li>
+<li><p>按阶段划分：</p>
+<blockquote>
+<p>单元测试、集成测试、系统测试、验收测试、回归测试、冒烟测试</p>
+</blockquote>
+</li>
+<li><p>按是否查看代码：</p>
+<blockquote>
+<p>黑盒测试、白盒测试、灰盒测试</p>
+</blockquote>
+</li>
+<li><p>按测试实施组织划分：</p>
+<blockquote>
+<p>α测试、β测试、第三方测试</p>
+</blockquote>
+</li>
+<li><p>按照执行方式划分：</p>
+<blockquote>
+<p>手工测试、自动化测试、静态测试、动态测试</p>
+</blockquote>
+</li>
+<li><p>按测试目的划分：</p>
+<blockquote>
+<p>功能测试、性能测试、安全性测试、兼容性测试、UI测试、易用性测试、业务逻辑测试、安装卸载测试、压力测试、可用性测试等</p>
+</blockquote>
+</li>
+<li><p>按测试地域划分：</p>
+<blockquote>
+<p>本地化测试、国际化测试</p>
+</blockquote>
+</li>
+</ul>
+<p>以上👆就是总结的一些主要的测试分类，每一种测试都有它测试的要点，虽然我们在工作中不会遇到这里所有的测试，但是我们还是需要知道：<code>他们都是在干什么，做这种类型的测试它的要点是什么</code>。</p>
+<p>其实我觉得分类可以再简单一点，可以直接分成：功能测试和非功能测试，而其他的测试活动都是建立在他们之上的，他们可以作为基础，向下继续划分。</p>
+<h3 id="软件测试的天花板"><a href="#软件测试的天花板" class="headerlink" title="软件测试的天花板"></a>软件测试的天花板</h3><p>最后我来说说软件测试的天花板，我认为软件测试是有3个阶段的：</p>
+<ol>
+<li>功能测试阶段（就是使用鼠标点点点，会使用一些工具进行辅助测试）</li>
+<li>自动化测试阶段（点点点变少了，更多的是去写一些自动化测试脚本，配合功能测试人员进行测试）</li>
+<li>测试开发阶段（写测试工具、测试框架和测试平台来帮助功能测试人员和自动化测试人员完成测试任务）</li>
+</ol>
+<p>软件测试有3个阶段，我认为天花板就只有两个：</p>
+<ul>
+<li><p>功能测试到自动化测试的天花板</p>
+<p>这个天花板我认为是最难突破的一个天花板。为什么是最难的呢？原因有两点：</p>
+<blockquote>
+<ol>
+<li>因为第一个阶段是很枯燥乏味又漫长的，一部分人坚持不下来就转行了，一部分人坚持下来了但是已经没有了激情和欲望，一部分人坚持下来了，也有突破的激情和欲望，但是对技术缺乏了天赋，这三部分人都是很难突破的；</li>
+<li>想要突破这个天花板，不仅需要技术过关，还需要大量测试经验的支撑</li>
+</ol>
+</blockquote>
+<p>这就是我为什么认为这个天花板是最难突破的。</p>
+</li>
+<li><p>自动化测试到测试开发的天花板</p>
+<p>这个天花板呢，虽说没有第一个难，但是也是有难度的：</p>
+<blockquote>
+<ol>
+<li>对软件测试有深刻的理解，熟练掌握测试技术，有大量的代码基础，在技术方面有一定的广度，无论是前端、后端、数据库还是服务器，都要了解</li>
+<li>要有软件工程的思想，熟练使用掌握的各种技能，快速解决研发团队的问题，确保测试左移和右移都能够正常进行</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<p>两个天花板都已经简单说了下，但是作为一个优秀的测试人员，不一定非要突破这个天花板，因为对于测试人员来说，最最重要的是<code>业务</code>，当你业务非常非常熟悉时，即使你在第一阶段，也是非常NB的！所以我觉得，测试人员想突破天花板，突破自我，是没有问题的，但是认清自己到底适合什么，到底想要什么才是最重要的。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%B5%8B%E8%AF%95%E7%BB%8F%E9%AA%8C/">测试经验</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/02/19/PreciseTesting/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">浅谈精准测试</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/10/15/NginxNote2/">
+                        <span class="hidden-mobile">Nginx学习笔记（二）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        蜀ICP备2020035042号-1
+      </a>
+    </span>
+    
+      
+        <span>
+          <a
+            href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51012202000836"
+            rel="nofollow noopener"
+            class="beian-police"
+            target="_blank"
+          >
+            
+              <span style="visibility: hidden; width: 0">|</span>
+              <img src="/img/beian_police.png" srcset="/img/loading.gif" alt="police-icon"/>
+            
+            <span>川公网安备 51012202000836号</span>
+          </a>
+        </span>
+      
+    
+  </div>
+
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?4effb29d65c8c7727d1f7cd90f0be014";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>Hamster（上篇）</title>
+    <link href="/2022/09/25/Hamster1/"/>
+    <url>/2022/09/25/Hamster1/</url>
+    
+    <content type="html"><![CDATA[<p>已不知花了多长时间，测试了多少次，升级优化了多少次，终于，Hamster诞生了</p><a id="more"></a><p><a href="https://github.com/DDDDanny/Hamster">Hamster</a>是一个基于PO模型的移动端应用UI自动化测试框架。他是基于uiautomator2（服务Android端）和facebook-wda（服务IOS端）来搭建的。为了能够更好的进行元素定位以及解决一些无法定位的元素，我引用了图片识别以及OCR技术来辅助进行元素定位，因为有了它们的加入，Hamster已无所不能💪</p><h3 id="为什么要创造Hamster"><a href="#为什么要创造Hamster" class="headerlink" title="为什么要创造Hamster"></a>为什么要创造Hamster</h3><p>我入职的时候，团队在为微信小程序自动化而苦恼，刚开始团队使用的是Airtest进行小程序UI自动化测试，效果还行，但是慢慢的，由于微信小程序的调整以及Poco的升级，我们执行自动化测试异常（如：微信闪退，元素无法捕获等）的概率大大提升，最终导致无法继续。</p><p>算是临危受命，我来接手小程序UI自动化测试，接手后，我发现之前所写的代码存在很大的问题，于是，我就开始重构之前的代码，与此同时，我也在尝试新的框架来代替Airtest。</p><p>起初我准备用Appium，结果效果很差，接着我去各大论坛寻找解决办法，很遗憾，大家都说暂时无法解决，更有趣的是，Appium团队和微信小程序团队在互相甩锅，都不解决问题。。。</p><p>由于公司的限制，我无法使用MiniTest框架</p><p>之后我还在不停尝试，我打开了Appium和Airtest源码，我发现它们的底层用的都是UIAutomator和wda，之后我就去Github上去找相关资料，发现了uiautomator2框架，研究了一段时间，我决定在uiautomator2的基础上做二次封装，来写一个适合团队，适合项目的新框架</p><h3 id="创造Hamster"><a href="#创造Hamster" class="headerlink" title="创造Hamster"></a>创造Hamster</h3><p>我有了思路后，Hamster初版很快就完成了，由于之前重构过一次测试用例，在重构中，我特别留意了兼容性的问题，所以在新框架的搭建完成后，同时也运用在了项目的回归测试上。</p><p>但是好景不长，由于微信内核升级以及设备系统的升级，有一些关键元素无法定位了，通过ADB获取原始DOM树发现，元素没了。这是个头疼的问题， 那段时间不知道如何解决，想迂回解决都没法。在那之后，我尝试了很多方法，也和前端同事一起努力过，但是都没有解决。</p><p>有一天我无意中想到，我为什么不去借鉴Airtest图片识别的办法呢？于是，我开始研究Airtest是如何实现的，明白原理后，我开始自己动手写图片识别的功能，没用多久，Hamster也具备了图片识别功能。</p><p>在用过一段时间后，我发现，效果不是很好，图片识别总会有点误差，虽然在对比前，我会对图片进行降噪等处理，但还是没有达到我的要求。我就在思考，有没有什么办法能够提高精准度？于是我就想到了OCR技术（Optical Character Recognition，光学字符识别）</p><p>有了想法，我就开始找资料学习研究，等各项条件都具备了，我就开始写OCR功能的内容了，很快Hamster也具备了图片识别功能。</p><p>至此，Hamster无所不能。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>自动化测试</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Flask配置&amp;操作数据库</title>
     <link href="/2021/05/01/FlaskAndDB/"/>
     <url>/2021/05/01/FlaskAndDB/</url>
